@@ -9,14 +9,13 @@ using std::string;
 // OUTPUT: HH:MM:SS
 // REMOVE: [[maybe_unused]] once you define the function
 string Format::ElapsedTime(long seconds) {
-  string HH, MM, SS;
-  HH = std::to_string(seconds / 3600);
-  HH.insert(0, 2 - HH.length(), '0');
-  seconds = seconds % 3600;
-  MM = std::to_string(seconds / 60);
-  MM.insert(0, 2 - MM.length(), '0');
-  SS = std::to_string(seconds % 60);
-  SS.insert(0, 2 - SS.length(), '0');
-
-  return HH + ":" + MM + ":" + SS;
+  int hh, mm, ss;
+  stringstream output;
+  hh = (seconds / 3600) % 100; 
+  mm = (seconds / 60) % 60;
+  ss = seconds % 60;
+  output << std::setfill('0') << std::setw(2) << hh << ":"
+         << std::setfill('0') << std::setw(2) << mm << ":"
+         << std::setfill('0') << std::setw(2) << ss;
+  return output.str();
 }
