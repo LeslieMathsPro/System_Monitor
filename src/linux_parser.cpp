@@ -269,7 +269,7 @@ string LinuxParser::User(int pid) {
       }
     }
   }
-  return "unknown";
+  return "unknown user";
 }
 
 // Read and return the uptime of a process
@@ -284,5 +284,6 @@ long LinuxParser::UpTime(int pid) {
       values.push_back(value);
     };
   }
+  // a way to get the pid uptime by calculation
   return LinuxParser::UpTime() - (stol(values[21]) / 100);
 }
