@@ -13,14 +13,14 @@ using std::to_string;
 using std::vector;
 
 // TODO: Return this process's ID
-int Process::Pid() { 
+int Process::Pid() const { 
     return _pid;
 }
 
 // TODO: Return this process's CPU utilization
-float Process::CpuUtilization() { 
+float Process::CpuUtilization() const { 
     float act_time = float(LinuxParser::ActiveJiffies(Pid()))/100;
-    float up_time = float(LinuxParser::Uptime(Pid()));
+    float up_time = float(LinuxParser::UpTime(Pid()));
     float util = act_time/up_time;
     return float(util);
 }
