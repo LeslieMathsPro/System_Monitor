@@ -32,7 +32,7 @@ float System::MemoryUtilization() { return 0.0; }
 std::string System::OperatingSystem() { return string(); }
 
 // TODO: Return the number of processes actively running on the system
-int System::RunningProcesses() { return 0; }
+int System::RunningProcesses() { return 0;  }
 
 // TODO: Return the total number of processes on the system
 int System::TotalProcesses() { return 0; }
