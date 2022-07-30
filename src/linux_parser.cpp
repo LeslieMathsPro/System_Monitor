@@ -72,23 +72,23 @@ float LinuxParser::MemoryUtilization() {
   string line;
   string key;
   string value;
-  string memoryTotal;
-  string memoryFree;
+  string memTotal;
+  string memFree;
   std::ifstream stream(kProcDirectory + kMeminfoFilename);
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
       std::istringstream linestream(line);
       while (linestream >> key >> value) {
         if (key == "MemTotal:") {
-          memoryTotal = value;
+          memTotal = value;
         } 
         if (key == "MemFree:") {
-          memoryFree = value;
+          memFree = value;
         }
       }
     }
   }
-  return (stof(memoryTotal)-stof(memoryFree)) / stof(memoryTotal);
+  return (stof(memTotal)-stof(memFree)) / stof(memTotal);
  }
 
 // TODO: Read and return the system uptime
@@ -110,7 +110,7 @@ long LinuxParser::Jiffies() {
   vector<long> valueslong(10, 0);
   long total = 0;
   vector<CPUStates> all = {kUser_, kNice_, kSystem_, kIdle_, kIOwait_, kIRQ_, kSoftIRQ_, kSteal_};
-  for (int i : all) { // All non-guest values
+  for (int i : all) {
     valueslong[i] = stol(values[i]);
     total += valueslong[i];
   };
